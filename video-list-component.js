@@ -19,7 +19,7 @@ Vue.component('video-list', {
 
 	methods: {
 		listUpdated: function(){
-			this.$emit('updated', this.data);
+			this.$store.commit('save')
 		},
 
 		remove: function(index){

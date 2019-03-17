@@ -2,9 +2,6 @@ window.app = new Vue({
 	el: '#app',
 	store,
 	data: {
-		page: {
-			title: 'MultiTV Channel Window',
-		},
 		panel: true,
 	},
 	computed: {
