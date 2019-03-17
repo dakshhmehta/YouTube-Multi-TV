@@ -19,21 +19,19 @@
 		</div>
 		<hr class="m-2" />
 		<div class="row">
-			<div class="col" v-if="!has_videos">
+			<div class="col col-9" v-if="!has_videos">
 				<div class="alert alert-info" role="alert">
 				  Either no videos there or available to display.
 				</div>
 			</div>
-			<monitor v-else :data="videos" :width="screen_width"></monitor>
+
+			<monitor v-if="has_videos" :width="screen_width"></monitor>
 
 			<div class="col panel" v-if="panel">
-				<add-video @added="add"></add-video>
+				<add-video></add-video>
 				<hr class="m-2" />
 
-				<video-list :data="videos" @updated="save" @removed="save"></video-list>
-				<hr class="m-2" />
-
-				<add-video @added="add"></add-video>
+				<video-list></video-list>
 			</div>
 		</div>
 	</div>
@@ -42,17 +40,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.9/dist/vue.js"></script>
+<script type="text/javascript" src="https://unpkg.com/vue"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.9/dist/vue.js"></script> -->
+<script type="text/javascript" src="https://unpkg.com/vuex@3.1.0/dist/vuex.js"></script>
+
+<script type="text/javascript" src="store.js"></script>
+
 <script type="text/javascript" src="add-video-component.js"></script>
 <script type="text/javascript" src="video-list-component.js"></script>
 <script type="text/javascript" src="monitor-component.js"></script>
 
 <script type="text/javascript" src="app.js"></script>
-<script type="text/javascript">
-	// window.app.videos.push({
-	// 	display: true,
-	// 	id: 'Ob98u6U050k',
-	// });
-</script>
+
 </body>
 </html>

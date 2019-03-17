@@ -1,14 +1,18 @@
 var _template = `<div class="col screens" :class="'col-'+width">
-			<div class="row">
-				<div class="col text-center" v-for="video in data" v-if="video.display">
-					<iframe v-bind:src="'https://youtube.com/embed/'+video.id" class="embed"></iframe><br/>
-					{{ video.id }}<br/><br/>
-				</div>
-			</div>
-		</div>`;
+					<div class="text-center" v-for="video in videos" v-if="video.display">
+						<iframe v-bind:src="'https://youtube.com/embed/'+video.id" class="embed"></iframe><br/>
+						{{ video.id }}<br/><br/>
+					</div>
+				</div>`;
 
 Vue.component('monitor', {
 	name: 'Monitor',
-	props: ['data', 'width'],
-	template: _template
+	store,
+	props: ['width'],
+	template: _template,
+	data(){
+		return {
+			videos: this.$store.state.videos
+		}
+	}
 });

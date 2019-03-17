@@ -1,5 +1,5 @@
 var _template =`	<ul>
-		<li v-for="(video, i) in data">
+		<li v-for="(video, i) in videos">
 			<input type="checkbox" v-model="video.display" @change="listUpdated" />
 			 {{ video.id }} <small class="text-danger"><i class="fa fa-trash" @click="remove(i)"></i></small>
 		</li>
@@ -7,10 +7,15 @@ var _template =`	<ul>
 
 Vue.component('video-list', {
 	name: 'videoList',
-
-	props: ['data'],
+	store,
 
 	template: _template,
+
+	computed: {
+		videos() {
+			return this.$store.state.videos
+		}
+	},
 
 	methods: {
 		listUpdated: function(){
@@ -22,9 +27,7 @@ Vue.component('video-list', {
 				return false;
 			}
 
-			this.data.splice(index, 1);
-
-			this.$emit('removed', this.data);
+			this.$store.dispatch('remove', index)
 		}
 	}
 });

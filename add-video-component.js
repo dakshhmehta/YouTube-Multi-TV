@@ -1,5 +1,6 @@
 Vue.component('add-video', {
 	name: 'addVideo',
+	store,
 	template: `
 	<div>
 		<input type="text" placeholder="Enter Youtube ID" v-model="videoId" />
@@ -7,7 +8,7 @@ Vue.component('add-video', {
 	</div>
 	`,
 
-	data: function(){
+	data() {
 		return {
 			videoId: null,
 		}
@@ -15,9 +16,13 @@ Vue.component('add-video', {
 
 	methods: {
 		addVid: function(){
-			this.$emit('added', this.videoId);
+			let that = this
 
-			this.videoId = null;
+			this.$store.dispatch('add', this.videoId).then(function(status){
+				that.videoId = null
+			}).catch(function(videoId){
+				alert(videoId+' is already in list.')
+			})
 		}
 	}
 });
