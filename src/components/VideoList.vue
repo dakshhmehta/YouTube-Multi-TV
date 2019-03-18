@@ -2,7 +2,8 @@
     <ul>
         <li v-for="(video, i) in videos" :key="video.id">
             <input type="checkbox" v-model="video.display" @change="listUpdated" />
-             {{ video.id }} <small class="text-danger"><i class="fa fa-trash" @click="remove(i)"></i></small>
+             {{ video.id }} 
+             <small class="text-danger"><fa-icon icon="trash" @click="remove(i)" /></small>
         </li>
     </ul>
 </template>
